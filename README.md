@@ -1,5 +1,5 @@
 # Práctica 13 — Capa de Negocios Distribuida
-## Sistema de Procesamiento de Órdenes de Compra
+## Sistema de Gestión de Inventarios y Pedidos
 ### CodeLink Solutions · UMB Huixquilucan · 2026
 
 ---
@@ -9,7 +9,7 @@
 Servicio de procesamiento de órdenes de compra implementado con:
 - **Lógica de negocio** (`src/domain/orderService.js`) — completamente aislada del middleware
 - **Middleware gRPC** (`src/middleware/grpcServer.js`) — gestiona comunicación de red
-- **Persistencia** (`src/db/database.js`) — SQLite con better-sqlite3
+- **Persistencia** (`src/db/database.js`) — SQLite con sql.js (sin dependencias nativas)
 
 ## Estructura del proyecto
 
@@ -25,9 +25,9 @@ p13/
 │   ├── middleware/
 │   │   └── grpcServer.js       # Servidor gRPC (capa de transporte)
 │   └── db/
-│       └── database.js         # Persistencia SQLite
+│       └── database.js         # Persistencia SQLite (sql.js)
 ├── test/
-│   └── client.test.js          # Cliente gRPC con 3 casos de prueba
+│   └── client.test.js          # Cliente gRPC con 4 casos de prueba
 └── data/
     └── inventory.db            # SQLite (se genera automáticamente)
 ```
@@ -43,6 +43,8 @@ p13/
 npm install
 ```
 
+> No requiere compiladores nativos ni Visual Studio. Usa `sql.js` (WebAssembly).
+
 ## Ejecución
 
 ### 1. Iniciar el servidor (en una terminal)
@@ -53,7 +55,13 @@ npm start
 
 Verás:
 ```
+[DB] Inventario inicial cargado.
 [DB] Base de datos lista: .../data/inventory.db
+==================================================
+  Sistema de Gestión de Inventarios y Pedidos
+  Práctica 13: Capa de Negocios Distribuida
+  CodeLink Solutions — UMB Huixquilucan
+==================================================
 [gRPC] Servidor escuchando en puerto 50051
 ```
 
@@ -81,6 +89,6 @@ npm test
 ## Variables de entorno (opcionales)
 
 ```bash
-GRPC_PORT=50051       # Puerto del servidor (default: 50051)
+GRPC_PORT=50051            # Puerto del servidor (default: 50051)
 SERVER_ADDR=localhost:50051  # Dirección para el cliente de prueba
 ```
