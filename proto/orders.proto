@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package orders;
+
+// ── Contrato del servicio de órdenes ──────────────────────────────
+service OrderService {
+  rpc ProcessOrder (OrderRequest) returns (OrderResponse);
+  rpc GetOrder     (OrderQuery)   returns (OrderResponse);
+}
+
+// Entrada: datos que envía el cliente
+message OrderRequest {
+  string client_id   = 1;
+  string product_id  = 2;
+  int32  quantity    = 3;
+  double unit_price  = 4;
+}
+
+// Consulta de orden existente
+message OrderQuery {
+  string order_id = 1;
+}
+
+// Salida: respuesta del servicio
+message OrderResponse {
+  string order_id     = 1;
+  string status       = 2;   // CREADA | VALIDADA | APROBADA | RECHAZADA
+  double subtotal     = 3;
+  double discount     = 4;
+  double tax          = 5;
+  double total        = 6;
+  string message      = 7;
+  string error        = 8;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "smartfarm-orden-service",
+  "version": "1.0.0",
+  "description": "Práctica 13 — Capa de Negocios Distribuida con gRPC + SQLite",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/client.test.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.6",
+    "@grpc/proto-loader": "^0.7.13",
+    "better-sqlite3": "^9.4.3",
+    "lokijs": "^1.5.12",
+    "sql.js": "^1.14.1",
+    "uuid": "^9.0.1"
+  },
+  "author": "CodeLink Solutions",
+  "license": "MIT"
+}
